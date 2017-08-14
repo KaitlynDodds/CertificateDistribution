@@ -10,6 +10,8 @@ namespace CertificateDistribution.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.OS = Environment.OSVersion.Platform;
+
             return View();
         }
         
