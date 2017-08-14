@@ -5,18 +5,20 @@
 <div class="jumbotron">
     <h1>Certificate Distribution Center</h1>
     @* TODO: figure out how to tell what system the user is using (Mac/Windows) and alter download options as a result *@
-    <p>What system is the user running on? Mac or Windows?</p>
+    <p>User Operating System: @ViewBag.Platform</p>
 </div>
 
 <div class="row">
     <div class="col-md-6">
         <h2>Download Admin</h2>
         <p>Click here to download an Admin Certificate...</p>
-        <p><a class="btn btn-default" href="#">Download &raquo;</a></p>
+        <p><a class="btn btn-default" href="@Url.Action("DownloadAdmin", "Home")">Download &raquo;</a></p>
     </div>
     <div class="col-md-6">
         <h2>Download ReadOnly</h2>
         <p>Click here to download a ReadOnly Certificate...</p>
-        <p><a class="btn btn-default" href="#">Download &raquo;</a></p>
+        <p>
+            <a class="btn btn-default" href="@Url.Action("DownloadReadOnly", "Home")">Download &raquo;</a>
+        </p>
     </div>
 </div>
