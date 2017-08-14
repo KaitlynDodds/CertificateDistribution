@@ -9,17 +9,39 @@ namespace CertificateDistribution.Controllers
 {
     public class HomeController : Controller
     {
+        private const string ADMIN_PREFIX = "admin_";
+
+        private const string READONLY_PREFIX= "readonly_";
+
         public ActionResult Index()
         {
-            ViewBag.OS = Environment.OSVersion.Platform;
             var platform = Request.UserAgent;
             ViewBag.Platform = platform;
 
             return View();
         }
 
-        public ActionResult Download()
+        /*
+         * Use to download a ReadOnly Certificate
+         */
+        public ActionResult DownloadReadOnly()
         {
+            return DownloadFile(READONLY_PREFIX);
+        }
+
+        /*
+         * Use to download a Admin Certificate
+         */
+        public ActionResult DownloadAdmin()
+        {
+            return DownloadFile(ADMIN_PREFIX);
+        }
+
+        private ActionResult DownloadFile(string filePrefix)
+        {
+            // readonly prefix - readonly_
+            // admin prefix - admin_
+
             string fileName = "";
             string fileType = "";
 
@@ -27,22 +49,28 @@ namespace CertificateDistribution.Controllers
             var platform = Request.UserAgent;
             if (platform.Contains("Windows"))
             {
-                fileName = "install_certificate.exe";
+                fileName = filePrefix + "install_certificate.exe";
                 fileType = "application/octet-stream";
             }
             else if (platform.Contains("Mac OS"))
             {
-                fileName = "install_certificate.";
+                fileName = filePrefix + "install_certificate.";
                 fileType = "";
             }
             else if (platform.Contains("Linux"))
             {
                 // show error, unsupported os
             }
+            else
+            {
+                // show error, unknown os 
+            }
 
             string fullPath = Path.Combine(Server.MapPath("~/Test_Content"), fileName);
             return File(fullPath, fileType, fileName);
+
         }
-        
+
+
     }
 }
