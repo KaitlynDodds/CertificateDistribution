@@ -87,3 +87,4 @@ C:\Users\kadodds\Source\Repos\CertificateDistribution\CertificateDistribution\bi
 C:\Users\kadodds\Source\Repos\CertificateDistribution\CertificateDistribution\obj\Release\CertificateDistribution.csproj.CoreCompileInputs.cache
 C:\Users\kadodds\Source\Repos\CertificateDistribution\CertificateDistribution\obj\Release\CertificateDistribution.dll
 C:\Users\kadodds\Source\Repos\CertificateDistribution\CertificateDistribution\obj\Release\CertificateDistribution.pdb
+C:\Users\kadodds\Source\Repos\CertificateDistribution\CertificateDistribution\obj\Release\CertificateDistribution.csprojResolveAssemblyReference.cache
