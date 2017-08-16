@@ -161,6 +161,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\CertificateDistributionWebMVC - Web Deploy.pubxml" />
+    <Content Include=".gitignore" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -172,8 +173,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Test_Content\readonly_install_certificate.exe" />
-    <Content Include="Test_Content\admin_install_certificate.exe" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -189,6 +188,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Distribution_Apps\Admin_Cert\" />
+    <Folder Include="Distribution_Apps\ReadOnly_Cert\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
