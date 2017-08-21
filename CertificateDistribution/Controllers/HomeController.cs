@@ -9,9 +9,9 @@ namespace CertificateDistribution.Controllers
 {
     public class HomeController : Controller
     {
-        private const string ADMIN_DIR = "Admin_Cert";
+        private const string ADMIN_DIR = "admin";
 
-        private const string READONLY_DIR = "ReadOnly_Cert";
+        private const string READONLY_DIR = "readonly";
         
         public ActionResult Index()
         {
