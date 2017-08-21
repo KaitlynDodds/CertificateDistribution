@@ -12,11 +12,25 @@ namespace CertificateDistribution.Controllers
         private const string ADMIN_DIR = "Admin_Cert";
 
         private const string READONLY_DIR = "ReadOnly_Cert";
-
+        
         public ActionResult Index()
         {
             var platform = Request.UserAgent;
-            ViewBag.Platform = platform;
+            var fileName = GetDownloadFileName(platform);
+
+            if (fileName.Equals("unknown"))
+            {
+                ViewBag.isValid = false;
+                ViewBag.Platform = "Unsupported Device Platform";
+            }
+            else
+            {
+                ViewBag.isValid = true;
+                ViewBag.Platform = platform;
+            }
+            // TEST
+            //ViewBag.isValid = false;
+            //ViewBag.Platform = "Unsupported Device Platform";
 
             return View();
         }
@@ -39,19 +53,15 @@ namespace CertificateDistribution.Controllers
 
         private ActionResult DownloadFile(string directory)
         {
-
-            string downloadFile = GetDownloadFileName();
+            var fileName = GetDownloadFileName(Request.UserAgent);
             
-
-
-            string fullPath = Path.Combine(Server.MapPath($"~/Distribution_Apps/{directory}/"), downloadFile);
-            return File(fullPath, downloadFile, downloadFile);
+            string fullPath = Path.Combine(Server.MapPath($"~/Distribution_Apps/{directory}/"), fileName);
+            return File(fullPath, fileName, fileName);
 
         }
 
-        private string GetDownloadFileName()
+        private string GetDownloadFileName(string platform)
         {
-            var platform = Request.UserAgent;
             platform = platform.ToLower();
 
             if (platform.Contains("windows"))
