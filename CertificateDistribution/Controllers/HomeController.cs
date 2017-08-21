@@ -9,9 +9,9 @@ namespace CertificateDistribution.Controllers
 {
     public class HomeController : Controller
     {
-        private const string ADMIN_PREFIX = "admin_";
+        private const string ADMIN_DIR = "Admin_Cert";
 
-        private const string READONLY_PREFIX= "readonly_";
+        private const string READONLY_DIR = "ReadOnly_Cert";
 
         public ActionResult Index()
         {
@@ -26,7 +26,7 @@ namespace CertificateDistribution.Controllers
          */
         public ActionResult DownloadReadOnly()
         {
-            return DownloadFile(READONLY_PREFIX);
+            return DownloadFile(READONLY_DIR);
         }
 
         /*
@@ -34,43 +34,69 @@ namespace CertificateDistribution.Controllers
          */
         public ActionResult DownloadAdmin()
         {
-            return DownloadFile(ADMIN_PREFIX);
+            return DownloadFile(ADMIN_DIR);
         }
 
-        private ActionResult DownloadFile(string filePrefix)
+        private ActionResult DownloadFile(string directory)
         {
-            // readonly prefix - readonly_
-            // admin prefix - admin_
 
-            string fileName = "";
-            string fileType = "";
+            string downloadFile = GetDownloadFileName();
+            
 
-            // Todo: check what OS the user is operating on
-            var platform = Request.UserAgent;
-            if (platform.Contains("Windows"))
-            {
-                fileName = filePrefix + "install_certificate.exe";
-                fileType = "application/octet-stream";
-            }
-            else if (platform.Contains("Mac OS"))
-            {
-                fileName = filePrefix + "install_certificate.";
-                fileType = "";
-            }
-            else if (platform.Contains("Linux"))
-            {
-                // show error, unsupported os
-            }
-            else
-            {
-                // show error, unknown os 
-            }
 
-            string fullPath = Path.Combine(Server.MapPath("~/Test_Content"), fileName);
-            return File(fullPath, fileType, fileName);
+            string fullPath = Path.Combine(Server.MapPath($"~/Distribution_Apps/{directory}/"), downloadFile);
+            return File(fullPath, downloadFile, downloadFile);
 
         }
 
+        private string GetDownloadFileName()
+        {
+            var platform = Request.UserAgent;
+            platform = platform.ToLower();
 
+            if (platform.Contains("windows"))
+            {
+                if (platform.Contains("x64"))
+                {
+                    if (platform.Contains("7.0"))
+                    {
+                        return "cert-install-win7-x64.zip";
+                    }
+                    else if (platform.Contains("10.0"))
+                    {
+                        return "cert-install-win10-x64.zip";
+                    }
+                    else
+                    {
+                        return "unknown";
+                    }
+                }
+                else if (platform.Contains("x86"))
+                {
+                    if (platform.Contains("7.0"))
+                    {
+                        return "cert-install-win7-x86.zip";
+                    }
+                    else if (platform.Contains("10.0"))
+                    {
+                        return "cert-install-win10-x86.zip";
+                    }
+                    else
+                    {
+                        return "unknown";
+                    }
+                }
+                else
+                {
+                    return "unknown";
+                }
+            }
+            else 
+            {
+                // TODO: finish 
+                return "unknown";
+            }
+
+        }
     }
 }
