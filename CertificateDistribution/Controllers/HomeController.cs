@@ -11,7 +11,7 @@ namespace CertificateDistribution.Controllers
     {
         private const string ADMIN_DIR = "admin";
 
-        private const string READONLY_DIR = "readonly";
+        private const string READONLY_DIR = "readonly   ";
         
         public ActionResult Index()
         {
