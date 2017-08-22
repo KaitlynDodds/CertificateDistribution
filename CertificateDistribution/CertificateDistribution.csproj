@@ -188,8 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Distribution_Apps\Admin_Cert\" />
-    <Folder Include="Distribution_Apps\ReadOnly_Cert\" />
+    <Folder Include="Distribution_Apps\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
