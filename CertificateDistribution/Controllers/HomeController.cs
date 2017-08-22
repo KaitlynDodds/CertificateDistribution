@@ -11,7 +11,7 @@ namespace CertificateDistribution.Controllers
     {
         private const string ADMIN_DIR = "admin";
 
-        private const string READONLY_DIR = "readonly   ";
+        private const string READONLY_DIR = "readonly";
         
         public ActionResult Index()
         {
@@ -28,9 +28,6 @@ namespace CertificateDistribution.Controllers
                 ViewBag.isValid = true;
                 ViewBag.Platform = platform;
             }
-            // TEST
-            //ViewBag.isValid = false;
-            //ViewBag.Platform = "Unsupported Device Platform";
 
             return View();
         }
@@ -48,7 +45,8 @@ namespace CertificateDistribution.Controllers
          */
         public ActionResult DownloadAdmin()
         {
-            return DownloadFile(ADMIN_DIR);
+            var downloadFile = DownloadFile(ADMIN_DIR);
+            return downloadFile;
         }
 
         private ActionResult DownloadFile(string directory)
